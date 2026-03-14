@@ -5,24 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pollynette Universe 💖</title>
   <style>
-
     @keyframes discoBG {
       0% { background-position: 0% 0%; }
       50% { background-position: 100% 100%; }
       100% { background-position: 0% 0%; }
     }
-
     @keyframes floaty {
       0% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
       100% { transform: translateY(0); }
     }
-
     @keyframes twinkle {
       0%, 100% { opacity: 0.2; transform: scale(0.8); }
       50% { opacity: 1; transform: scale(1.2); }
     }
-
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
@@ -38,20 +34,17 @@
       justify-content: center;
       text-align: center;
     }
-
     h1 {
       font-size: 3.5em;
       text-shadow: 0 0 20px rgba(255, 200, 255, 0.9);
       animation: floaty 3s ease-in-out infinite;
       margin-bottom: 10px;
     }
-
     p {
       font-size: 1.2em;
       margin-bottom: 30px;
       color: #ffe9f6;
     }
-
     .button-twitch {
       background: linear-gradient(90deg, #9146FF, #ff66b2);
       border: none;
@@ -64,23 +57,19 @@
       box-shadow: 0 0 15px rgba(255,255,255,0.6);
       transition: all 0.3s ease;
     }
-
     .button-twitch:hover {
       transform: scale(1.05);
       box-shadow: 0 0 25px #ff80bf;
     }
-
     .skull {
       width: 180px;
       margin-top: 40px;
       filter: drop-shadow(0 0 15px rgba(255,255,255,0.8));
       animation: floaty 5s ease-in-out infinite;
     }
-
     .skull:hover {
       transform: scale(1.1) rotate(5deg);
     }
-
     .star {
       position: absolute;
       width: 6px;
@@ -89,7 +78,6 @@
       border-radius: 50%;
       animation: twinkle 3s ease-in-out infinite;
     }
-
   </style>
 </head>
 <body>
@@ -114,19 +102,19 @@
     var redirectUri = "[tanjawi30.github.io](https://tanjawi30.github.io/pollynette/)";
 
     function loginWithTwitch() {
-      var url = "[id.twitch.tv](https://id.twitch.tv/oauth2/authorize)";
-      url = url + "?client_id=" + clientId;
-      url = url + "&redirect_uri=" + encodeURIComponent(redirectUri);
-      url = url + "&response_type=token";
-      url = url + "&scope=user:read:email";
-      window.location.href = url;
+      var base = "[id.twitch.tv](https://id.twitch.tv/oauth2/authorize)";
+      var params = "?client_id=" + clientId;
+      params = params + "&redirect_uri=" + encodeURIComponent(redirectUri);
+      params = params + "&response_type=token";
+      params = params + "&scope=user:read:email";
+      window.location.href = base + params;
     }
 
     if (window.location.hash.indexOf("access_token") !== -1) {
       var hash = window.location.hash.substring(1);
       var params = new URLSearchParams(hash);
       var token = params.get("access_token");
-      document.body.innerHTML = "<h1>🎉 Connecté avec succès !</h1><p>Bienvenue dans l'univers de Pollynette 💋</p>";
+      document.body.innerHTML = "<h1>🎉 Connecté !</h1><p>Bienvenue chez Pollynette 💋</p>";
     }
   </script>
 
