@@ -3,51 +3,111 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pollynette Fan Club 💖</title>
+  <title>Pollynette Universe 💖</title>
   <style>
+    /* --- FOND ANIMÉ --- */
+    @keyframes discoBG {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
     body {
-      font-family: 'Comic Sans MS', cursive;
-      background: #ffe6f2;
-      color: #d63384;
-      text-align: center;
       margin: 0;
-      padding: 0;
-      background-image: url('[i.imgur.com](https://i.imgur.com/kVeDox8.png)');
-      background-repeat: repeat;
-      background-size: contain;
+      font-family: "Poppins", sans-serif;
+      overflow-x: hidden;
+      background: linear-gradient(45deg, #ff80bf, #ffc0cb, #87cefa, #fff0f5);
+      background-size: 300% 300%;
+      animation: discoBG 10s ease-in-out infinite;
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      position: relative;
     }
-    .container {
-      padding-top: 100px;
-    }
-    button {
-      background-color: #ff66b2;
-      border: none;
-      border-radius: 10px;
-      color: white;
-      padding: 15px 25px;
-      font-size: 20px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover {
-      background-color: #ff3399;
+
+    /* --- EFFET FLOTTANT SUR LE TEXTE --- */
+    @keyframes floaty {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
     }
     h1 {
-      font-size: 3em;
+      font-size: 3.5em;
+      text-shadow: 0 0 20px rgba(255, 200, 255, 0.9);
+      animation: floaty 3s ease-in-out infinite;
+      margin-bottom: 10px;
     }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+      color: #ffe9f6;
+    }
+
+    /* --- BOUTON TWITCH FUTURISTE --- */
+    .button-twitch {
+      background: linear-gradient(90deg, #9146FF, #ff66b2);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      padding: 15px 40px;
+      font-size: 1.3em;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(255,255,255,0.6);
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 2;
+    }
+    .button-twitch:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #ff80bf;
+    }
+
+    /* --- CRÂNE POLLYNETTE --- */
     .skull {
-      width: 150px;
+      width: 180px;
       margin-top: 40px;
+      filter: drop-shadow(0 0 15px rgba(255,255,255,0.8));
+      transition: transform 1s ease;
+      animation: floaty 5s ease-in-out infinite;
+    }
+    .skull:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    /* --- ÉTOILES --- */
+    .star {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 3s ease-in-out infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% {opacity: 0.2; transform: scale(0.8);}
+      50% {opacity: 1; transform: scale(1.2);}
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Bienvenue chez Pollynette 💋</h1>
-    <p>Connecte-toi avec ton compte Twitch pour continuer</p>
-    <button onclick="alert('Plus tard ici il y aura la connexion Twitch ⚡')">Se connecter avec Twitch</button>
-    <br><br>
-    <img class="skull" src="[i.imgur.com](https://i.imgur.com/whzXpgB.png)" alt="logo Pollynette">
-  </div>
+  <!-- petites étoiles (effet disco) -->
+  <div class="star" style="top: 10%; left: 15%; animation-delay: 0s;"></div>
+  <div class="star" style="top: 20%; left: 80%; animation-delay: 1s;"></div>
+  <div class="star" style="top: 75%; left: 50%; animation-delay: 2s;"></div>
+  <div class="star" style="top: 40%; left: 25%; animation-delay: 0.5s;"></div>
+  <div class="star" style="top: 60%; left: 70%; animation-delay: 1.5s;"></div>
+
+  <h1>Bienvenue chez Pollynette 💫</h1>
+  <p>Rejoins l’univers des abonnés – love, glitter et cowgirl power 🤠💋</p>
+
+  <button class="button-twitch" onclick="alert('Bientôt la vraie connexion Twitch 💜')">
+    🔮 Se connecter avec Twitch
+  </button>
+  <img class="skull" src="[i.imgur.com](https://i.imgur.com/whzXpgB.png)" alt="logo Pollynette">
 </body>
 </html>
