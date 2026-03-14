@@ -116,26 +116,33 @@
   <img class="skull" src="[i.imgur.com](https://i.imgur.com/whzXpgB.png)" alt="logo Pollynette">
 
   <script>
-    //--------------------------------------------
-    // 🔐 Twitch Login Configuration
-    //--------------------------------------------
-    const CLIENT_ID = "7pu1jmpwccojsgthc5u5ft4aucd7bw"; // 👈 ton vrai Client ID
-    const REDIRECT_URI = "[tanjawi30.github.io](https://tanjawi30.github.io/pollynette/)";
+  // Configuration Twitch
+  const CLIENT_ID = "7pu1jmpwccojsgthc5u5ft4aucd7bw";
+  const REDIRECT_URI = "[tanjawi30.github.io](https://tanjawi30.github.io/pollynette/)";
 
-    function loginWithTwitch() {
-      const twitchURL = `[id.twitch.tv](https://id.twitch.tv/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=user%3Aread%3Aemail)`;
-      window.location.href = twitchURL;  // ✅ redirection correcte en HTTPS
-    }
+  function loginWithTwitch() {
+    // 🔥 Attention : PAS de crochets, PAS de parenthèses Markdown ici !
+    const twitchURL =
+      "[id.twitch.tv](https://id.twitch.tv/oauth2/authorize)"
+      + "?client_id=" + CLIENT_ID
+      + "&redirect_uri=" + encodeURIComponent(REDIRECT_URI)
+      + "&response_type=token"
+      + "&scope=user:read:email";
 
-    // quand Twitch renvoie avec le token
-    if (window.location.hash.includes("access_token")) {
-      const token = new URLSearchParams(window.location.hash.substring(1)).get("access_token");
-      document.body.innerHTML = `
-        <h1>🎉 Connecté avec succès !</h1>
-        <p>Bienvenue dans l'univers de Pollynette 💋</p>
-        <p><small>Token reçu : ${token.substring(0, 20)}...</small></p>
-      `;
-    }
-  </script>
+    // ✅ on redirige directement vers Twitch :
+    window.location.href = twitchURL;
+  }
+
+  // Quand Twitch te renvoie ici avec un token :
+  if (window.location.hash.includes("access_token")) {
+    const token = new URLSearchParams(window.location.hash.substring(1)).get("access_token");
+    document.body.innerHTML = `
+      <h1>🎉 Connecté avec succès !</h1>
+      <p>Bienvenue dans l'univers de Pollynette 💋</p>
+      <p><small>Token reçu : ${token.substring(0, 20)}...</small></p>
+    `;
+  }
+</script>
+
 </body>
 </html>
