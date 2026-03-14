@@ -5,35 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pollynette Universe 💖</title>
   <style>
-    /* --- FOND ANIMÉ --- */
+    /* Fond animé disco */
     @keyframes discoBG {
       0% { background-position: 0% 0%; }
       50% { background-position: 100% 100%; }
       100% { background-position: 0% 0%; }
     }
+
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
-      overflow-x: hidden;
-      background: linear-gradient(45deg, #ff80bf, #ffc0cb, #87cefa, #fff0f5);
+      overflow: hidden;
+      background: linear-gradient(45deg, #ff66c4, #ffa6ff, #87cefa, #fff0f5);
       background-size: 300% 300%;
       animation: discoBG 10s ease-in-out infinite;
       color: #fff;
       height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
       text-align: center;
-      position: relative;
     }
 
-    /* --- EFFET FLOTTANT SUR LE TEXTE --- */
-    @keyframes floaty {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0); }
-    }
     h1 {
       font-size: 3.5em;
       text-shadow: 0 0 20px rgba(255, 200, 255, 0.9);
@@ -47,7 +41,14 @@
       color: #ffe9f6;
     }
 
-    /* --- BOUTON TWITCH FUTURISTE --- */
+    /* Animation légère de flottement */
+    @keyframes floaty {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Bouton Twitch animé */
     .button-twitch {
       background: linear-gradient(90deg, #9146FF, #ff66b2);
       border: none;
@@ -62,12 +63,12 @@
       position: relative;
       z-index: 2;
     }
+
     .button-twitch:hover {
       transform: scale(1.05);
       box-shadow: 0 0 25px #ff80bf;
     }
 
-    /* --- CRÂNE POLLYNETTE --- */
     .skull {
       width: 180px;
       margin-top: 40px;
@@ -75,11 +76,12 @@
       transition: transform 1s ease;
       animation: floaty 5s ease-in-out infinite;
     }
+
     .skull:hover {
       transform: scale(1.1) rotate(5deg);
     }
 
-    /* --- ÉTOILES --- */
+    /* Petites étoiles scintillantes */
     .star {
       position: absolute;
       width: 6px;
@@ -88,14 +90,16 @@
       border-radius: 50%;
       animation: twinkle 3s ease-in-out infinite;
     }
+
     @keyframes twinkle {
       0%, 100% {opacity: 0.2; transform: scale(0.8);}
       50% {opacity: 1; transform: scale(1.2);}
     }
   </style>
 </head>
+
 <body>
-  <!-- petites étoiles (effet disco) -->
+  <!-- Étoiles en fond -->
   <div class="star" style="top: 10%; left: 15%; animation-delay: 0s;"></div>
   <div class="star" style="top: 20%; left: 80%; animation-delay: 1s;"></div>
   <div class="star" style="top: 75%; left: 50%; animation-delay: 2s;"></div>
@@ -105,9 +109,34 @@
   <h1>Bienvenue chez Pollynette 💫</h1>
   <p>Rejoins l’univers des abonnés – love, glitter et cowgirl power 🤠💋</p>
 
-  <button class="button-twitch" onclick="alert('Bientôt la vraie connexion Twitch 💜')">
-    🔮 Se connecter avec Twitch
+  <button class="button-twitch" onclick="loginWithTwitch()">
+    💜 Se connecter avec Twitch
   </button>
+
   <img class="skull" src="[i.imgur.com](https://i.imgur.com/whzXpgB.png)" alt="logo Pollynette">
+
+  <script>
+    //--------------------------------------------
+    // 🔐 Twitch Login Configuration
+    //--------------------------------------------
+    const CLIENT_ID = "7pu1jmpwccojsgthc5u5ft4aucd7bw"; // 👈 remplace ceci par ton vrai client ID !
+    const REDIRECT_URI = window.location.origin + window.location.pathname;
+
+    function loginWithTwitch() {
+      const twitchURL = `[id.twitch.tv](https://id.twitch.tv/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=user%3Aread%3Aemail)`;
+      window.location = twitchURL;
+    }
+
+    // Quand Twitch te renvoie ici avec un token :
+    if (window.location.hash.includes("access_token")) {
+      const token = new URLSearchParams(window.location.hash.substr(1)).get("access_token");
+      document.body.innerHTML = `
+        <h1>🎉 Connecté avec succès !</h1>
+        <p>Bienvenue dans l'univers de Pollynette 💋</p>
+        <p><small>Ton token Twitch : ${token.substring(0,20)}...</small></p>
+      `;
+    }
+  </script>
 </body>
 </html>
+
