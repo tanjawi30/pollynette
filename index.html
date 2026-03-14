@@ -109,7 +109,7 @@
   <h1>Bienvenue chez Pollynette 💫</h1>
   <p>Rejoins l’univers des abonnés – love, glitter et cowgirl power 🤠💋</p>
 
-  <button class="button-twitch" onclick="loginWithTwitch()">
+    <button class="button-twitch" onclick="loginWithTwitch()">
     💜 Se connecter avec Twitch
   </button>
 
@@ -119,24 +119,23 @@
     //--------------------------------------------
     // 🔐 Twitch Login Configuration
     //--------------------------------------------
-    const CLIENT_ID = "7pu1jmpwccojsgthc5u5ft4aucd7bw"; // 👈 remplace ceci par ton vrai client ID !
-    const REDIRECT_URI = window.location.origin + window.location.pathname;
+    const CLIENT_ID = "7pu1jmpwccojsgthc5u5ft4aucd7bw"; // 👈 ton vrai Client ID
+    const REDIRECT_URI = "[tanjawi30.github.io](https://tanjawi30.github.io/pollynette/)";
 
     function loginWithTwitch() {
       const twitchURL = `[id.twitch.tv](https://id.twitch.tv/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=user%3Aread%3Aemail)`;
-      window.location = twitchURL;
+      window.location.href = twitchURL;  // ✅ redirection correcte en HTTPS
     }
 
-    // Quand Twitch te renvoie ici avec un token :
+    // quand Twitch renvoie avec le token
     if (window.location.hash.includes("access_token")) {
-      const token = new URLSearchParams(window.location.hash.substr(1)).get("access_token");
+      const token = new URLSearchParams(window.location.hash.substring(1)).get("access_token");
       document.body.innerHTML = `
         <h1>🎉 Connecté avec succès !</h1>
         <p>Bienvenue dans l'univers de Pollynette 💋</p>
-        <p><small>Ton token Twitch : ${token.substring(0,20)}...</small></p>
+        <p><small>Token reçu : ${token.substring(0, 20)}...</small></p>
       `;
     }
   </script>
 </body>
 </html>
-
